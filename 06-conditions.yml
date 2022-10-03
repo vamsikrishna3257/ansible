@@ -1,0 +1,24 @@
+- name: Demo on conditions 
+  hosts: all  
+  vars:
+    action: false 
+  tasks:
+    - name: Run this task only for CentOS Machines 
+      debug:    
+          msg: Hello To CentOS  
+      when: ansible_distribution == "CentOS"
+
+    - name: Run this task only for Ubuntu Machines 
+      debug:    
+          msg: Hello To Ubuntu  
+      when: ansible_distribution == "Ubuntu"
+    
+    - name: Run ABC Action 
+      debug:  
+        msg: Running ABC Action  
+      when: action
+   
+    - name: Demo on defined undefined key words 
+      debug:
+        msg: "Sample is declared" 
+      when: sample is defined 
