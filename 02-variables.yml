@@ -1,0 +1,38 @@
+- name: Demo on variables 
+  hosts: all  
+  vars_files:
+    - proj-A-file-vars.yml
+  vars:
+    URL: play.google.com    # Global/ Play level Variables
+  vars_prompt:
+    - name: URL 
+      prompt: Enter URL 
+      private: no
+  tasks:  
+    - name: Printing a file variable 
+      ansible.builtin.debug:
+        msg: The value of URL is {{ FILE_URL }}
+
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: The value of URL is {{ URL }}
+    
+    - name: printing the URL 
+      ansible.builtin.debug:
+        msg: The value of URL is {{ URL }} 
+      vars:
+        URL: task.google.com 
+
+    - name: printing the CLI_URL 
+      ansible.builtin.debug:
+        msg: "{{ CLI_URL }}"
+
+### Which variable will have higher precedence ?
+
+### Command Line Variable > Local Variables > Prompt Variables  > Global Variables
+
+
+# We can also supply the variables from the command line and we refer it as run time variables.
+
+# How can we override the variables ?
+# But pass it from the Command Line 
