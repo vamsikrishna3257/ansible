@@ -1,5 +1,6 @@
-- name:playbook to setup roboshop workshop
+- name: Playbook to setup roboshop project
   hosts: frontend-dev
   roles:
-    -frontend
+    - frontend
     
+
